@@ -1,0 +1,38 @@
+<div class="modal" #modal tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" (click)="closeModal(modal)" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col md 6">
+                    <div>
+                        <h1> {{brandsDetails.name}} </h1>
+                        <p> {{brandsDetails.name}} </p>
+                    </div>
+                </div>
+                <div class="col md 6">
+                    <img class="w-100" [src]="brandsDetails.image" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" (click)="closeModal(modal)" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<section class="my-4">
+    <h2 class="text-center text-main h1"> All Brands </h2>
+
+    <div class="row g-4">
+        <div class="col-md-2" *ngFor="let brand of brands">
+            <div class="product p-3" (click)="showModal(brand._id , modal)">
+                    <img [src]="brand.image" class="w-100" [alt]="brand.name">
+                    <h3 class="h6 text-center"> {{brand.name }} </h3>
+            </div>
+        </div>
+    </div>
+</section>

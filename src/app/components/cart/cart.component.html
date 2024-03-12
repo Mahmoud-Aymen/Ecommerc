@@ -1,0 +1,32 @@
+<section class="w-75 mx-auto bg-main-light p-2 rounded-3 my-3">
+    <h1> Shop Cart </h1>
+    <h2 *ngIf="  cartDetails.totalCartPrice == null ">your cart is empty</h2>
+    <p class="text-main"> Totle Price : {{cartDetails.totalCartPrice | currency: "EGP" }} </p>
+    <div class="row pb-3" *ngFor=" let item of cartDetails.products ">
+        <div class="col-md-1">
+            <img [src]="item.product.imageCover" class="w-100" alt="">
+        </div>
+        <div class="col-md-11">
+           <div class="d-flex justify-content-between align-content-center">
+            <div>
+                <h3 class="h5"> {{item.product.title}} </h3>
+                <p class="text-main"> price: {{item.price}} </p>
+                <button class="btn p-0 m-0" (click)="removeCartItem(item.product._id)"> 
+                    <i class="fa-regular fa-trash-can"></i> Remove
+                 </button>
+            </div>
+            <div>
+                <button (click)="changeCount(item.product._id , item.count+1)" class="btn border border-success">+</button>
+                <span> {{item.count}} </span>
+                <button (click)="changeCount(item.product._id , item.count-1)" class="btn border border-success">-</button>
+            </div>
+           </div>
+        </div>
+    </div>
+ 
+    <div class="d-flex justify-content-between align-content-center">
+        <button [routerLink]="['/chekout' , cartDetails._id ]" class="btn-main">onlinePayment <img src="./assets/images/visa-1.svg" alt=""> </button>
+        <button (click)="claer()" class="btn btn-sm btn-outline-danger"> Clear All Cart </button>
+    </div>
+
+</section>
